@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moderatör Paneli - Aloduna</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Aloduna</h1>
+      <nav>
+        <a href="/">Ana Sayfa</a>
+        <a href="/moderator/logout">Çıkış</a>
+        <button id="theme-toggle">Tema Değiştir</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Moderatör Paneli</h2>
+      <p>Hoş geldiniz, <%= user.username %>!</p>
+      <!-- Burada raporlar, loglar, silme işlemleri vs. eklenecek -->
+      <p>Panel henüz geliştiriliyor...</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Aloduna. <a href="/legal/gizlilik-politikasi">Gizlilik Politikası</a> | <a href="/legal/kullanici-sozlesmesi">Kullanıcı Sözleşmesi</a> | <a href="/legal/topluluk-kurallari">Topluluk Kuralları</a></p>
+    <div class="footer-flag">🇹🇷</div>
+  </footer>
+
+  <script src="/js/theme.js"></script>
+</body>
+</html>

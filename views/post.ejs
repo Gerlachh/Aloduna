@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gönderi - Aloduna</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Aloduna</h1>
+      <nav>
+        <a href="/">Ana Sayfa</a>
+        <a href="/notes">Notlar</a>
+        <a href="/dm">DM</a>
+        <button id="theme-toggle">Tema Değiştir</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="post-detail">
+      <h2><%= post.title %></h2>
+      <p><%= post.content %></p>
+      <small><%= post.username %> - <%= new Date(post.created_at).toLocaleString('tr-TR') %></small>
+      <form action="/report" method="POST" class="report-form">
+        <input type="hidden" name="targetType" value="post">
+        <input type="hidden" name="targetId" value="<%= post.id %>">
+        <select name="reason" required>
+          <option value="spam">Spam</option>
+          <option value="hakaret">Hakaret</option>
+          <option value="yanlis-bilgi">Yanlış Bilgi</option>
+        </select>
+        <button type="submit">Rapor Et</button>
+      </form>
+    </section>
+
+    <section class="comments">
+      <h3>Yorumlar</h3>
+      <form action="/comment" method="POST">
+        <input type="hidden" name="postId" value="<%= post.id %>">
+        <textarea name="content" placeholder="Yorumunuz" required maxlength="500"></textarea>
+        <button type="submit">Yorum Yap</button>
+      </form>
+      <div class="comment-list">
+        <% function renderComments(comments, parentId = null) { %>
+          <% comments.filter(c => c.parent_id == parentId).forEach(comment => { %>
+            <div class="comment">
+              <p><%= comment.content %></p>
+              <small><%= comment.username %> - <%= new Date(comment.created_at).toLocaleString('tr-TR') %></small>
+              <form action="/report" method="POST" class="report-form">
+                <input type="hidden" name="targetType" value="comment">
+                <input type="hidden" name="targetId" value="<%= comment.id %>">
+                <select name="reason" required>
+                  <option value="spam">Spam</option>
+                  <option value="hakaret">Hakaret</option>
+                  <option value="yanlis-bilgi">Yanlış Bilgi</option>
+                </select>
+                <button type="submit">Rapor Et</button>
+              </form>
+              <button onclick="replyTo(<%= comment.id %>)">Yanıtla</button>
+              <div id="reply-form-<%= comment.id %>" style="display:none;">
+                <form action="/comment" method="POST">
+                  <input type="hidden" name="postId" value="<%= post.id %>">
+                  <input type="hidden" name="parentId" value="<%= comment.id %>">
+                  <textarea name="content" placeholder="Yanıtınız" required maxlength="500"></textarea>
+                  <button type="submit">Yanıtla</button>
+                </form>
+              </div>
+              <% renderComments(comments, comment.id); %>
+            </div>
+          <% }); %>
+        <% } %>
+        <% renderComments(comments); %>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Aloduna. <a href="/legal/gizlilik-politikasi">Gizlilik Politikası</a> | <a href="/legal/kullanici-sozlesmesi">Kullanıcı Sözleşmesi</a> | <a href="/legal/topluluk-kurallari">Topluluk Kuralları</a></p>
+    <div class="turkish-flag">🇹🇷</div>
+  </footer>
+
+  <script src="/js/theme.js"></script>
+  <script>
+    function replyTo(id) {
+      const form = document.getElementById('reply-form-' + id);
+      form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+  </script>
+</body>
+</html>

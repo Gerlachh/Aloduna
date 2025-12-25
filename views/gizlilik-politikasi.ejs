@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gizlilik Politikası - Aloduna</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Aloduna</h1>
+      <nav>
+        <a href="/">Ana Sayfa</a>
+        <button id="theme-toggle">Tema Değiştir</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Gizlilik Politikası</h2>
+      <p>Son Güncelleme: <%= new Date().toLocaleString('tr-TR') %></p>
+      <p>Aloduna, kullanıcı gizliliğini ön planda tutar. Platformumuz tamamen anonimdir ve kişisel bilgiler toplanmaz.</p>
+      <h3>IP Adresleri</h3>
+      <p>IP adresleriniz spam ve flood koruması için geçici olarak saklanır. Moderatörler tarafından kötüye kullanım durumunda IP ban uygulanabilir.</p>
+      <h3>DM ve Raporlar</h3>
+      <p>Özel mesajlar ve raporlar moderatörler tarafından incelenebilir ve yönetilebilir.</p>
+      <h3>Notlar Sistemi</h3>
+      <p>Notlar sadece arkadaşlarınız tarafından görülebilir ve 24 saat sonra otomatik olarak silinir.</p>
+      <h3>Arkadaşlık Sistemi</h3>
+      <p>Arkadaşlık istekleri anonim olarak gönderilir ve kabul/reddedilebilir.</p>
+      <h3>Yaş Sınırı</h3>
+      <p>Platform 13 yaş ve üzeri kullanıcılar içindir.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Aloduna. <a href="/legal/gizlilik-politikasi">Gizlilik Politikası</a> | <a href="/legal/kullanici-sozlesmesi">Kullanıcı Sözleşmesi</a> | <a href="/legal/topluluk-kurallari">Topluluk Kuralları</a></p>
+    <div class="footer-flag">🇹🇷</div>
+  </footer>
+
+  <script src="/js/theme.js"></script>
+</body>
+</html>

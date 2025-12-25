@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kategori - Aloduna</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Aloduna</h1>
+      <nav>
+        <a href="/">Ana Sayfa</a>
+        <a href="/notes">Notlar</a>
+        <a href="/dm">DM</a>
+        <button id="theme-toggle">Tema Değiştir</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="posts">
+      <h2>Gönderiler</h2>
+      <form action="/post" method="POST">
+        <input type="hidden" name="categoryId" value="<%= categoryId %>">
+        <input type="text" name="title" placeholder="Başlık" required maxlength="100">
+        <textarea name="content" placeholder="İçerik" required maxlength="1000"></textarea>
+        <button type="submit">Gönderi Oluştur</button>
+      </form>
+      <ul>
+        <% posts.forEach(post => { %>
+          <li>
+            <a href="/post/<%= post.id %>">
+              <h3><%= post.title %></h3>
+              <p><%= post.content.substring(0, 100) %>...</p>
+              <small><%= post.username %> - <%= new Date(post.created_at).toLocaleString('tr-TR') %></small>
+            </a>
+          </li>
+        <% }); %>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Aloduna. <a href="/legal/gizlilik-politikasi">Gizlilik Politikası</a> | <a href="/legal/kullanici-sozlesmesi">Kullanıcı Sözleşmesi</a> | <a href="/legal/topluluk-kurallari">Topluluk Kuralları</a></p>
+    <div class="turkish-flag">🇹🇷</div>
+  </footer>
+
+  <script src="/js/theme.js"></script>
+</body>
+</html>

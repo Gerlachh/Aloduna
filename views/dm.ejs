@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DM - Aloduna</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Aloduna</h1>
+      <nav>
+        <a href="/">Ana Sayfa</a>
+        <button id="theme-toggle">Tema Değiştir</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="dm-container">
+      <div class="dm-list">
+        <h3>Arkadaşlar</h3>
+        <ul>
+          <% friends.forEach(friend => { %>
+            <li><a href="#chat-<%= friend.id %>"><%= friend.username %></a></li>
+          <% }); %>
+        </ul>
+      </div>
+      <div class="dm-chat">
+        <div class="dm-messages" id="messages">
+          <!-- Mesajlar burada yüklenecek -->
+        </div>
+        <div class="dm-input">
+          <form action="/dm/send" method="POST">
+            <input type="hidden" name="receiverId" id="receiverId">
+            <input type="text" name="content" placeholder="Mesajınızı yazın..." required>
+            <button type="submit">Gönder</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Aloduna. <a href="/legal/gizlilik-politikasi">Gizlilik Politikası</a> | <a href="/legal/kullanici-sozlesmesi">Kullanıcı Sözleşmesi</a> | <a href="/legal/topluluk-kurallari">Topluluk Kuralları</a></p>
+    <div class="footer-flag">🇹🇷</div>
+  </footer>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/theme.js"></script>
+  <script>
+    const socket = io();
+    socket.on('newDM', (data) => {
+      // Yeni mesajı ekle
+      const messages = document.getElementById('messages');
+      const msgDiv = document.createElement('div');
+      msgDiv.textContent = data.content;
+      messages.appendChild(msgDiv);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+node_modules/
+logs/
+*.log
+sessions.db
+aloduna.db
+.env
+.DS_Store

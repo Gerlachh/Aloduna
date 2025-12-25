@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topluluk Kuralları - Aloduna</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Aloduna</h1>
+      <nav>
+        <a href="/">Ana Sayfa</a>
+        <button id="theme-toggle">Tema Değiştir</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Topluluk Kuralları</h2>
+      <p>Son Güncelleme: <%= new Date().toLocaleString('tr-TR') %></p>
+      <ul>
+        <li>Saygılı olun, hakaret etmeyin.</li>
+        <li>Spam yapmayın.</li>
+        <li>Kişisel bilgileri paylaşmayın.</li>
+        <li>Nefret söylemi yasaktır.</li>
+        <li>13 yaş altı kullanım yasaktır.</li>
+      </ul>
+      <p>Kural ihlalleri rapor edilebilir ve moderatörler tarafından cezalandırılabilir.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Aloduna. <a href="/legal/gizlilik-politikasi">Gizlilik Politikası</a> | <a href="/legal/kullanici-sozlesmesi">Kullanıcı Sözleşmesi</a> | <a href="/legal/topluluk-kurallari">Topluluk Kuralları</a></p>
+    <div class="footer-flag">🇹🇷</div>
+  </footer>
+
+  <script src="/js/theme.js"></script>
+</body>
+</html>

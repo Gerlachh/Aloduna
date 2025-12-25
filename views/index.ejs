@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aloduna - Anonim Forum</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Aloduna</h1>
+      <nav>
+        <a href="/">Ana Sayfa</a>
+        <a href="/notes">Notlar</a>
+        <a href="/dm">DM</a>
+        <button id="theme-toggle">Tema Değiştir</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="categories">
+      <h2>Kategoriler</h2>
+      <% if (user && !user.is_moderator) { %>
+        <form action="/category" method="POST">
+          <input type="text" name="name" placeholder="Yeni kategori adı" required maxlength="50">
+          <button type="submit">Kategori Oluştur</button>
+        </form>
+      <% } %>
+      <ul>
+        <% categories.forEach(category => { %>
+          <li><a href="/category/<%= category.id %>"><%= category.name %></a></li>
+        <% }); %>
+      </ul>
+    </section>
+
+    <section class="notes">
+      <h2>Arkadaş Notları</h2>
+      <% if (notes.length === 0) { %>
+        <p>Henüz not yok.</p>
+      <% } else { %>
+        <% notes.forEach(note => { %>
+          <div class="note">
+            <strong><%= note.username %></strong>: <%= note.content %>
+            <small><%= new Date(note.created_at).toLocaleString('tr-TR') %></small>
+          </div>
+        <% }); %>
+      <% } %>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Aloduna. <a href="/legal/gizlilik-politikasi">Gizlilik Politikası</a> | <a href="/legal/kullanici-sozlesmesi">Kullanıcı Sözleşmesi</a> | <a href="/legal/topluluk-kurallari">Topluluk Kuralları</a></p>
+    <div class="footer-flag">🇹🇷</div>
+  </footer>
+
+  <script src="/js/theme.js"></script>
+</body>
+</html>
